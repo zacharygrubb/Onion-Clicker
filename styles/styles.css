@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#page-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+}
+
+#full-onion {
+    display: flex;
+    justify-content: center;
+}
+
+#onion {
+    height: 500px;
+}
+
+#onion:hover {
+    cursor: pointer;
+}
+
+#upgrades-doubleclick, #upgrades-grippygloves, #upgrades-saferpestisides, #upgrades-pitstops, #upgrades-farmersmarkets, #upgrades-seasonalcontracts {
+    display: none;
+}
+
+#upgrades, #buildings {
+    list-style: none;
+    width: 27%;
+}
+
+.buildings-item, .upgrades-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: solid 4px brown;
+    position: relative;
+    margin: 5px 0px;
+}
+
+.buildings-item, .upgrades-item:hover {
+    cursor: pointer;
+}
+
+.upgrades-icon{
+    font-size: 76px;
+    border-right: solid 4px brown;
+    padding-right: 20px;
+    margin-left: 20px
+}
+
+.item-text {
+    width: 100%;
+}
+
+.buildings-item-text, .upgrades-item-text {
+    font-size: 30px;
+}
+
+.buildings-item-image {
+    height: 100px;
+    border-right: solid 4px brown;
+}
+
+#onion-farmer-count, #onion-field-count, #onion-truck-count, #onion-store-count {
+    width: 30%;
+    font-size: 50px;
+}
+
+.buildings-item .building-ops, .upgrades-item .upgrades-description {
+    visibility: hidden;
+    background-color: brown;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.upgrades-description {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+}
+
+.buildings-item:hover .building-ops, .upgrades-item:hover .upgrades-description {
+    visibility: visible;
+}

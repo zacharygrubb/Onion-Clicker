@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles/styles.css"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="styles/styles.css"/>
+    </head>
+    <body> 
+        <header id="page-head">
+            <div id="stats">
+                <div id="click-counter">no onions</div>
+            </div>
+            <h1>Onion Clicker</h1>
+            <div id="onion-total">no onions</div>
+        </header>
+        <main id="full-onion">
+            <ol id="upgrades">
+                <li class="upgrades-item" id="upgrades-reinforcedmouse">
+                    <div class="upgrades-icon">&#9757;</div>
+                    <div class="item-text">
+                        <p class="upgrades-item-text">Reinforced Mouse</p>
+                        <p>100 &#129477;</p>
+                    </div>
+                    <div class="upgrades-description">Doubles your click power.</div>
+                </li>
+                <li class="upgrades-item" id="upgrades-doubleclick">
+                    <div class="upgrades-icon">&#9996;</div>
+                    <div>
+                        <p class="upgrades-item-text">Double Click</p>
+                        <p>500 &#129477;</p>
+                    </div>
+                    <div class="upgrades-description">Doubles your click power... again!</div>
+                </li>
+                <li class="upgrades-item" id="upgrades-grippygloves">
+                    <div class="upgrades-icon">&#129508;</div>
+                    <div class="item-text">
+                        <p class="upgrades-item-text">Grippy Gloves</p>
+                        <p>1,000 &#129477;</p>
+                    </div>
+                    <div class="upgrades-description">
+                        <p>Farmers are given some nice OnionTek&#174; gloves.</p>
+                        <p>Onion farmers are twice as effective.</p>
+                    </div>
+                </li>
+                <li class="upgrades-item" id="upgrades-saferpestisides">
+                    <div class="upgrades-icon">&#128299;</div>
+                    <div class="item-text">
+                        <p class="upgrades-item-text">Safer Pesistides</p>
+                        <p>60,000 &#129477;</p>
+                    </div>
+                    <div class="upgrades-description">
+                        <p>The new pestisides work better, and cause serious lung damage 60% less than previously!</p>
+                        <p>Onion fields are twice as effective.</p>
+                    </div>
+                </li>
+                <li class="upgrades-item" id="upgrades-seasonalcontracts">
+                    <div class="upgrades-icon">&#128203;</div>
+                    <div class="item-text">
+                        <p class="upgrades-item-text">Seasonal Contracts</p>
+                        <p>80,000 &#129477;</p>
+                    </div>
+                    <div class="upgrades-description">
+                        <p>Farmers hired can be worked twice as hard after signing our seasonal contracts.</p>
+                        <p>Onion farmers are twice as effective.</p>
+                    </div>
+                </li>
+                <li class="upgrades-item" id="upgrades-pitstops">
+                    <div class="upgrades-icon">&#128666;</div>
+                    <div class="item-text">
+                        <p class="upgrades-item-text">Pit Stops</p>
+                        <p>700,000 &#129477;</p>
+                    </div>
+                    <div class="upgrades-description">
+                        <p>Pit stop crews at truck stops to check tires, hoses, brakes, and driver sobriety.</p>
+                        <p>Onion trucks are twice as effective.</p>
+                    </div>
+                </li>
+                <li class="upgrades-item" id="upgrades-farmersmarkets">
+                    <div class="upgrades-icon">&#127978;</div>
+                    <div class="item-text">
+                        <p class="upgrades-item-text">Farmers Markets</p>
+                        <p>8,000,000 &#129477;</p>
+                    </div>
+                    <div class="upgrades-description">
+                        <p>Phasing out the lame local produce for our better, mass-produced onions.</p>
+                        <p>Onion stores are twice as effective.</p>
+                    </div>
+                </li>
+            </ol>
+            <img src="assets/onion.png" draggable="false" id="onion"/>
+            <ul id="buildings">
+                <li class="buildings-item" id="buildings-onion-farmer">
+                    <img src="assets/onion-farmer.jpg" draggable="false" class="buildings-item-image" id="onion-farmer"/>
+                    <div class="item-text">
+                        <p class="buildings-item-text">Onion Farmer</p>
+                        <p id="onion-farmer-price">100 &#129477;</p>
+                    </div>
+                    <div id="onion-farmer-count">0</div>
+                    <div class="building-ops" id="building-ops-farmer">0 onion fields producing 0 onions per second</div>
+                </li>
+                <li class="buildings-item" id="buildings-onion-field">
+                    <img src="assets/onion-field.jpg" draggable="false" class="buildings-item-image" id="onion-field"/>
+                    <div class="item-text">
+                        <p class="buildings-item-text">Onion Field</p>
+                        <p id="onion-field-price">1500 &#129477;</p>
+                    </div>
+                    <div id="onion-field-count">0</div>
+                    <div class="building-ops" id="building-ops-field">0 onion fields producing 0 onions per second</div>
+                </li>
+                <li class="buildings-item" id="buildings-onion-truck">
+                    <img src="assets/onion-truck.jpg" draggable="false" class="buildings-item-image" id="onion-truck"/>
+                    <div class="item-text">
+                        <p class="buildings-item-text">Onion Truck</p>
+                        <p id="onion-truck-price">17000 &#129477;</p>
+                    </div>
+                    <div id="onion-truck-count">0</div>
+                    <div class="building-ops" id="building-ops-truck">0 onion trucks producing 0 onions per second</div>
+                </li>
+                <li class="buildings-item" id="buildings-onion-store">
+                    <img src="assets/onion-store.jpg" draggable="false" class="buildings-item-image" id="onion-store"/>
+                    <div class="item-text">
+                        <p class="buildings-item-text">Onion Store</p>
+                        <p id="onion-store-price">200000 &#129477;</p>
+                    </div>
+                    <div id="onion-store-count">0</div>
+                    <div class="building-ops" id="building-ops-store">0 onion stores producing 0 onions per second</div>
+                </li>
+            </ul>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
