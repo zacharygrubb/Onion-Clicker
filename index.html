@@ -10,14 +10,11 @@
     </head>
     <body> 
         <header id="page-head">
-            <div id="stats">
-                <div id="click-counter">no onions</div>
-            </div>
             <h1>Onion Clicker</h1>
-            <div id="onion-total">no onions</div>
         </header>
         <main id="full-onion">
             <ol id="upgrades">
+                <li id="upgrades-tag">Upgrades</li>
                 <li class="upgrades-item" id="upgrades-reinforcedmouse">
                     <div class="upgrades-icon">&#9757;</div>
                     <div class="item-text">
@@ -90,16 +87,34 @@
                     </div>
                 </li>
             </ol>
-            <img src="assets/onion.png" draggable="false" id="onion"/>
+            <div id="onion-stats">
+                <p id="onion-total">No Onions!</p>
+                <img src="assets/onion.png" draggable="false" id="onion"/>
+                <div id="stats">
+                    <p id="ops">0 Onions Per Second</p>
+                    <button>STATS</button>
+                    <div id="stats-display">
+                        <p id="click-counter">No Onions!</p>
+                        <p id="onion-alltime">No Onions!</p>
+                        <p id="all-building-count">No Buildings!</p>
+                        <p id="upgrade-count">No Upgrades!</p>
+                        <p id="run-start">Run Not Started!</p>
+                    </div>
+                </div>
+            </div>
             <ul id="buildings">
+                <li id="buildings-tag">Buildings</li>
                 <li class="buildings-item" id="buildings-onion-farmer">
                     <img src="assets/onion-farmer.jpg" draggable="false" class="buildings-item-image" id="onion-farmer"/>
                     <div class="item-text">
                         <p class="buildings-item-text">Onion Farmer</p>
                         <p id="onion-farmer-price">100 &#129477;</p>
                     </div>
-                    <div id="onion-farmer-count">0</div>
-                    <div class="building-ops" id="building-ops-farmer">0 onion fields producing 0 onions per second</div>
+                    <div class="building-count" id="onion-farmer-count">0</div>
+                    <div class="building-ops">
+                        <p>An onion farmer to farm some onions.</p>
+                        <p id="building-ops-farmer">0 onion fields producing 0 onions per second</p>
+                    </div>
                 </li>
                 <li class="buildings-item" id="buildings-onion-field">
                     <img src="assets/onion-field.jpg" draggable="false" class="buildings-item-image" id="onion-field"/>
@@ -107,8 +122,11 @@
                         <p class="buildings-item-text">Onion Field</p>
                         <p id="onion-field-price">1500 &#129477;</p>
                     </div>
-                    <div id="onion-field-count">0</div>
-                    <div class="building-ops" id="building-ops-field">0 onion fields producing 0 onions per second</div>
+                    <div class="building-count" id="onion-field-count">0</div>
+                    <div class="building-ops">
+                        <p>An onion field to reap and sow onions.</p>
+                        <p id="building-ops-field">0 onion fields producing 0 onions per second</p>
+                    </div>
                 </li>
                 <li class="buildings-item" id="buildings-onion-truck">
                     <img src="assets/onion-truck.jpg" draggable="false" class="buildings-item-image" id="onion-truck"/>
@@ -116,8 +134,11 @@
                         <p class="buildings-item-text">Onion Truck</p>
                         <p id="onion-truck-price">17000 &#129477;</p>
                     </div>
-                    <div id="onion-truck-count">0</div>
-                    <div class="building-ops" id="building-ops-truck">0 onion trucks producing 0 onions per second</div>
+                    <div class="building-count" id="onion-truck-count">0</div>
+                    <div class="building-ops">
+                        <p>Onion trucks ship your onions around the world.</p>
+                        <p id="building-ops-truck">0 onion trucks producing 0 onions per second</p>
+                    </div>
                 </li>
                 <li class="buildings-item" id="buildings-onion-store">
                     <img src="assets/onion-store.jpg" draggable="false" class="buildings-item-image" id="onion-store"/>
@@ -125,8 +146,47 @@
                         <p class="buildings-item-text">Onion Store</p>
                         <p id="onion-store-price">200000 &#129477;</p>
                     </div>
-                    <div id="onion-store-count">0</div>
-                    <div class="building-ops" id="building-ops-store">0 onion stores producing 0 onions per second</div>
+                    <div class="building-count" id="onion-store-count">0</div>
+                    <div class="building-ops">
+                        <p>Onion stores dedicated solely to your onions.</p>
+                        <p id="building-ops-store">0 onion stores producing 0 onions per second</p>
+                    </div>
+                </li>
+                <li class="buildings-item" id="buildings-onion-mlm">
+                    <img src="assets/onion-mlm.png" draggable="false" class="buildings-item-image" id="onion-mlm"/>
+                    <div class="item-text">
+                        <p class="buildings-item-text">Onion MLM</p>
+                        <p id="onion-mlm-price">3000000 &#129477;</p>
+                    </div>
+                    <div class="building-count" id="onion-mlm-count">0</div>
+                    <div class="building-ops">
+                        <p>Scam people into buying, and then selling your onions!</p>
+                        <p id="building-ops-mlm">0 onion mlms producing 0 onions per second</p>
+                    </div>
+                </li>
+                <li class="buildings-item" id="buildings-onion-printer">
+                    <img src="assets/onion-printer.jpg" draggable="false" class="buildings-item-image" id="onion-printer"/>
+                    <div class="item-text">
+                        <p class="buildings-item-text">Onion Printer</p>
+                        <p id="onion-printer-price">40000000 &#129477;</p>
+                    </div>
+                    <div class="building-count" id="onion-printer-count">0</div>
+                    <div class="building-ops">
+                        <p>Printing synthetic onions in bulk.</p>
+                        <p id="building-ops-printer">0 onion printers producing 0 onions per second</p>
+                    </div>
+                </li>
+                <li class="buildings-item" id="buildings-onion-republic">
+                    <img src="assets/onion-republic.jpg" draggable="false" class="buildings-item-image" id="onion-republic"/>
+                    <div class="item-text">
+                        <p class="buildings-item-text">Onion Republic</p>
+                        <p id="onion-republic-price">500000000 &#129477;</p>
+                    </div>
+                    <div class="building-count" id="onion-republic-count">0</div>
+                    <div class="building-ops">
+                        <p>Control a developing nation's politics to gain favorable growing laws!</p>
+                        <p id="building-ops-republic">0 onion republics producing 0 onions per second</p>
+                    </div>
                 </li>
             </ul>
         </main>

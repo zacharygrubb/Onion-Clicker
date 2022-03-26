@@ -1,44 +1,85 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Ubuntu;
 }
 
 #page-head {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    height: 100px;
+    align-items: center;
+    height: 80px;
+    background-color: #E1D5E6;
+    border-bottom: solid black 4px;
 }
 
 #full-onion {
     display: flex;
-    justify-content: center;
+    background-image: url(../assets/onion-background.jpg);
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: center;
+}
+
+#onion-stats {
+    text-align: center;
 }
 
 #onion {
     height: 500px;
+    border-bottom-left-radius: 44%;
+    border-top-right-radius: 72%;
 }
 
 #onion:hover {
     cursor: pointer;
 }
 
-#upgrades-doubleclick, #upgrades-grippygloves, #upgrades-saferpestisides, #upgrades-pitstops, #upgrades-farmersmarkets, #upgrades-seasonalcontracts {
+#stats-display {
+    background-color: #3B071D;
+    color: #fff;
     display: none;
+}
+
+#upgrades-tag, #buildings-tag {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 36px;
 }
 
 #upgrades, #buildings {
     list-style: none;
-    width: 27%;
+    width: 100%;
+    background-color: #E1D5E6;
 }
 
-.buildings-item, .upgrades-item{
+#upgrades {
+    border-right: solid black 4px;
+}
+
+#buildings {
+    border-left: solid black 4px;
+}
+
+.upgrades-item {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    background-color: #D68CCF;
+    border: solid 2px black;
+    position: relative;
+    height: 100px;
+}
+
+.buildings-item {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: solid 4px brown;
+    background-color: #D68CCF;
+    border: solid 2px black;
     position: relative;
-    margin: 5px 0px;
+    height: 100px;
 }
 
 .buildings-item, .upgrades-item:hover {
@@ -47,9 +88,8 @@
 
 .upgrades-icon{
     font-size: 76px;
-    border-right: solid 4px brown;
-    padding-right: 20px;
-    margin-left: 20px
+    padding-right: 20%;
+    margin-left: 20px;
 }
 
 .item-text {
@@ -62,32 +102,28 @@
 
 .buildings-item-image {
     height: 100px;
-    border-right: solid 4px brown;
+    padding-right: 20%;
 }
 
-#onion-farmer-count, #onion-field-count, #onion-truck-count, #onion-store-count {
+.building-count {
     width: 30%;
     font-size: 50px;
 }
 
 .buildings-item .building-ops, .upgrades-item .upgrades-description {
     visibility: hidden;
-    background-color: brown;
+    background-color: #3B071D;
     color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: absolute;
+    grid-gap: 16px;
     z-index: 1;
     width: 100%;
     height: 100%;
-}
-
-.upgrades-description {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 16px;
 }
 
 .buildings-item:hover .building-ops, .upgrades-item:hover .upgrades-description {
