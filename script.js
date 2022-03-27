@@ -47,3 +47,31 @@ function buyBuilding(index) {
         alert('get your money up');
     }
 }
+
+function onionClickCounter() {
+    let onionClicksAll = onionClicksStart++;
+    clickCounter.textContent = `${onionClicksAll} onions clicked`;
+    statsDisplay();
+}
+
+function onionFinal(onionAdd) {
+    onionFinalCalc = onionFinalCalc + onionAdd;
+}
+
+onion.addEventListener('click', onionClickCounter);
+onion.addEventListener('click', function () { 
+    onionFinal(onionClickPower); });
+onionFarmer.addEventListener('click', function () { 
+    buyBuilding(0); });
+onionField.addEventListener('click', function () { 
+    buyBuilding(1); });
+onionTruck.addEventListener('click', function () { 
+    buyBuilding(2); });
+onionStore.addEventListener('click', function () { 
+    buyBuilding(3); });
+onionMlm.addEventListener('click', function () { 
+    buyBuilding(4); });
+onionPrinter.addEventListener('click', function () { 
+    buyBuilding(5); });
+onionRepublic.addEventListener('click', function () { 
+    buyBuilding(6); });
