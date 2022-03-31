@@ -38,7 +38,7 @@ const onionRepublicCount = document.querySelector('#onion-republic-count');
 const buildingOpsRepublic = document.querySelector('#building-ops-republic');
 
 let onionClicksStart = 1;
-let onionClickPower = 10000000;
+let onionClickPower = 1;
 let onionFinalCalc = 0;
 let onionFinalCalcDisplay = 0;
 let onionFarmerPower = 0.1;
@@ -133,6 +133,30 @@ function onionRepublicEffect() {
     onionFinalCalc = onionFinalCalc + onionRepublicPower * buildings.start[6];
 }
 
+function statsDisplay() {
+    buildingOpsFarmer.innerHTML = `${buildings.start[0]} onion farmers producing ${Math.round(onionFarmerPower * 10 * buildings.start[0])} onions per second`;
+    onionFarmerCount.innerHTML = `${buildings.count[0]}`;
+    buildings.price[0].innerHTML = `${Math.round(buildings.costs[0])} &#129477;`;
+    buildingOpsField.innerHTML = `${buildings.start[1]} onion farmers producing ${Math.round(onionFieldPower * 10 * buildings.start[1])} onions per second`;
+    onionFieldCount.innerHTML = `${buildings.count[1]}`;
+    buildings.price[1].innerHTML = `${Math.round(buildings.costs[1])} &#129477;`;
+    buildingOpsTruck.innerHTML = `${buildings.start[2]} onion trucks producing ${Math.round(onionTruckPower * 10 * buildings.start[2])} onions per second`;
+    onionTruckCount.innerHTML = `${buildings.count[2]}`;
+    buildings.price[2].innerHTML = `${Math.round(buildings.costs[2])} &#129477;`;
+    buildingOpsStore.innerHTML = `${buildings.start[3]} onion stores producing ${Math.round(onionStorePower * 10 * buildings.start[3])} onions per second`;
+    onionStoreCount.innerHTML = `${buildings.count[3]}`;
+    buildings.price[3].innerHTML = `${Math.round(buildings.costs[3])} &#129477;`;
+    buildingOpsMlm.innerHTML = `${buildings.start[4]} onion mlms producing ${Math.round(onionMlmPower * 10 * buildings.start[4])} onions per second`;
+    onionMlmCount.innerHTML = `${buildings.count[4]}`;
+    buildings.price[4].innerHTML = `${Math.round(buildings.costs[4])} &#129477;`;
+    buildingOpsPrinter.innerHTML = `${buildings.start[5]} onion printers producing ${Math.round(onionPrinterPower * 10 * buildings.start[5])} onions per second`;
+    onionPrinterCount.innerHTML = `${buildings.count[5]}`;
+    buildings.price[5].innerHTML = `${Math.round(buildings.costs[5])} &#129477;`;
+    buildingOpsRepublic.innerHTML = `${buildings.start[6]} onion republics producing ${Math.round(onionRepublicPower * 10 * buildings.start[6])} onions per second`;
+    onionRepublicCount.innerHTML = `${buildings.count[6]}`;
+    buildings.price[6].innerHTML = `${Math.round(buildings.costs[6])} &#129477;`;
+}
+
 function onionClickCounter() {
     let onionClicksAll = onionClicksStart++;
     clickCounter.textContent = `${onionClicksAll} onions clicked`;
@@ -142,6 +166,16 @@ function onionClickCounter() {
 function onionFinal(onionAdd) {
     onionFinalCalc = onionFinalCalc + onionAdd;
 }
+
+setInterval(function() {
+    if (onionFinalCalc > onionFinalCalcDisplay) {
+        onionFinalCalcDisplay = onionFinalCalc;
+        onionTotal.textContent = `${Math.round(onionFinalCalcDisplay)} onions`;
+    } else {
+        onionFinalCalcDisplay = onionFinalCalc;
+        onionTotal.textContent = `${Math.round(onionFinalCalcDisplay)} onions`;
+    }
+}, 16);
 
 onion.addEventListener('click', onionClickCounter);
 onion.addEventListener('click', function () { 
