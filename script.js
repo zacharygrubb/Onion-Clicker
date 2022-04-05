@@ -66,6 +66,63 @@ const buildings = {
     count : [0, 0, 0, 0, 0, 0, 0]
 };
 
+function effectsUpgrade() {
+    if (upgrades.start[0]) {
+        onionClickPower *= 2;
+        console.log('bought reinforced mouse');
+        reinforcedMouse.style.display = "none";
+        upgrades.start[0] = false;
+    }
+    if (upgrades.start[1]) {
+        onionClickPower *= 2;
+        console.log('bought double click');
+        doubleClick.style.display = "none";
+        upgrades.start[1] = false;
+    }
+    if (upgrades.start[2]) {
+        onionFarmerPower *= 2;
+        console.log('bought grippy gloves');
+        grippyGloves.style.display = "none";
+        upgrades.start[2] = false;
+    }
+    if (upgrades.start[3]) {
+        onionFieldPower *= 2;
+        console.log('bought safer pestisides');
+        saferPestisides.style.display = "none";
+        upgrades.start[3] = false;
+    }
+    if (upgrades.start[4]) {
+        onionTruckPower *= 2;
+        console.log('bought pit stops');
+        pitStops.style.display = "none";
+        upgrades.start[4] = false;
+    }
+    if (upgrades.start[5]) {
+        onionStorePower *= 2;
+        console.log('bought farmers markets');
+        farmersMarkets.style.display = "none";
+        upgrades.start[5] = false;
+    }
+    if (upgrades.start[6]) {
+        onionFarmerPower *= 2;
+        console.log('bought seasonal contracts');
+        seasonalContracts.style.display = "none";
+        upgrades.start[6] = false;
+    }
+}
+
+function buyUpgrade(index) {
+    if (upgrades.costs[index] <= onionFinalCalc) {
+        onionFinalCalc -= upgrades.costs[index];
+        upgrades.start[index] = true;
+        onionTotal.textContent = `${onionFinalCalc} onions clicked`;
+        effectsUpgrade();
+        statsDisplay();
+    } else {
+        alert('get your money up')
+    }
+}
+
 function buyBuilding(index) {
     if ((buildings.costs[index] <= onionFinalCalc) && (buildings.set[index] == false)){
         onionFinalCalc -= buildings.costs[index];
@@ -155,6 +212,35 @@ function statsDisplay() {
     buildingOpsRepublic.innerHTML = `${buildings.start[6]} onion republics producing ${Math.round(onionRepublicPower * 10 * buildings.start[6])} onions per second`;
     onionRepublicCount.innerHTML = `${buildings.count[6]}`;
     buildings.price[6].innerHTML = `${Math.round(buildings.costs[6])} &#129477;`;
+    
+    if ((onionFinalCalc >= 1) && (upgrades.visible[0] == false)) {
+        reinforcedMouse.style.display = "flex"; //add this to display update later
+        upgrades.visible[0] = true;
+    }
+    if ((onionFinalCalc >= 80) && (upgrades.visible[1] == false)) {
+        doubleClick.style.display = "flex"; //add this to display update later
+        upgrades.visible[1] = true;
+    }
+    if ((buildings.count[0] >= 1) && (upgrades.visible[2] == false)) {
+        grippyGloves.style.display = "flex"; //add this to display update later
+        upgrades.visible[2] = true;
+    }
+    if ((buildings.count[1] >= 1) && (upgrades.visible[3] == false)) {
+        saferPestisides.style.display = "flex"; //add this to display update later
+        upgrades.visible[3] = true;
+    }
+    if ((buildings.count[2] >= 1) && (upgrades.visible[4] == false)) {
+        pitStops.style.display = "flex"; //add this to display update later
+        upgrades.visible[4] = true;
+    }
+    if ((buildings.count[3] >= 1) && (upgrades.visible[5] == false)) {
+        farmersMarkets.style.display = "flex"; //add this to display update later
+        upgrades.visible[5] = true;
+    }
+    if ((buildings.count[0] >= 10) && (upgrades.visible[6] == false)) {
+        seasonalContracts.style.display = "flex"; //add this to display update later
+        upgrades.visible[6] = true;
+    }
 }
 
 function onionClickCounter() {
