@@ -9,9 +9,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 80px;
+    height: 10vh;
     background-color: #E1D5E6;
     border-bottom: solid black 4px;
+    box-sizing: border-box;
 }
 
 #full-onion {
@@ -20,10 +21,18 @@
     background-repeat: repeat-x;
     background-size: contain;
     background-position: center;
+    height: 90vh;
 }
 
 #onion-stats {
     text-align: center;
+}
+
+#onion-total {
+    font-size: 36px;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 2px 2px black;
 }
 
 #onion {
@@ -36,9 +45,16 @@
     cursor: pointer;
 }
 
+#ops {
+    font-size: 28px;
+    color: black;
+    font-weight: 700;
+}
+
 #stats-display {
-    background-color: #3B071D;
-    color: #fff;
+    font-size: 28px;
+    color: black;
+    font-weight: 700;
     display: none;
 }
 
@@ -52,6 +68,8 @@
     list-style: none;
     width: 100%;
     background-color: #E1D5E6;
+    overflow-y: scroll;
+    height: 100%;
 }
 
 #upgrades {
@@ -92,6 +110,10 @@
     margin-left: 20px;
 }
 
+.upgrades-item-image {
+    height: 100%;
+}
+
 .item-text {
     width: 100%;
 }
@@ -102,7 +124,7 @@
 
 .buildings-item-image {
     height: 100px;
-    padding-right: 20%;
+    padding-right: 10px;
 }
 
 .building-count {

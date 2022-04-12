@@ -1,5 +1,6 @@
 const onion = document.querySelector('#onion');
 const onionTotal = document.querySelector('#onion-total');
+const onionsPerSecond = document.querySelector('#ops');
 const clickCounter = document.querySelector('#click-counter');
 const reinforcedMouse = document.querySelector('#upgrades-reinforcedmouse');
 const doubleClick = document.querySelector('#upgrades-doubleclick');
@@ -8,6 +9,9 @@ const saferPestisides = document.querySelector('#upgrades-saferpestisides');
 const pitStops = document.querySelector('#upgrades-pitstops');
 const farmersMarkets = document.querySelector('#upgrades-farmersmarkets');
 const seasonalContracts = document.querySelector('#upgrades-seasonalcontracts');
+const unpaidInternships = document.querySelector('#upgrades-unpaidinternships');
+const cyborgFarmers = document.querySelector('#upgrades-cyborgfarmers');
+const childLabor = document.querySelector('#upgrades-childlabor');
 const onionFarmer = document.querySelector('#buildings-onion-farmer');
 const onionFarmerPrice = document.querySelector('#onion-farmer-price');
 const onionFarmerCount = document.querySelector('#onion-farmer-count');
@@ -36,34 +40,38 @@ const onionRepublic = document.querySelector('#buildings-onion-republic');
 const onionRepublicPrice = document.querySelector('#onion-republic-price');
 const onionRepublicCount = document.querySelector('#onion-republic-count');
 const buildingOpsRepublic = document.querySelector('#building-ops-republic');
+const onionBiofuelConverter = document.querySelector('#buildings-onion-biofuel-converter');
+const onionBiofuelConverterPrice = document.querySelector('#onion-biofuel-converter-price');
+const onionBiofuelConverterCount = document.querySelector('#onion-biofuel-converter-count');
+const buildingOpsBiofuelConverter = document.querySelector('#building-ops-biofuel-converter');
 
 let onionClicksStart = 1;
 let onionClickPower = 1;
 let onionFinalCalc = 0;
 let onionFinalCalcDisplay = 0;
-let onionFarmerPower = 0.1;
-let onionFieldPower = 0.8;
-let onionTruckPower = 7.5;
-let onionStorePower = 53.0;
-let onionMlmPower = 600.0;
-let onionPrinterPower = 5200.0;
-let onionRepublicPower = 36000.0;
-
+let onionFarmerPower = 1;
+let onionFieldPower = 1;
+let onionTruckPower = 8;
+let onionStorePower = 53;
+let onionMlmPower = 600;
+let onionPrinterPower = 5200;
+let onionRepublicPower = 36000;
+let onionBiofuelConverterPower = 350000;
 
 const upgrades = {
-    names : ['Reinforced Mouse', 'Double Click', 'Grippy Gloves', 'Safer Pestisides', 'Pit Stops', 'Farmers Markets', 'Seasonal Contracts'],
-    costs : [100, 500, 1000, 60000, 700000, 8000000, 80000],
-    start : [false, false, false, false, false, false, false],
-    visible : [false, false, false, false, false, false, false]
+    names : ['Reinforced Mouse', 'Double Click', 'Grippy Gloves', 'Safer Pestisides', 'Pit Stops', 'Farmers Markets', 'Seasonal Contracts', 'Unpaid Internships', 'Cyborg Farmers', 'Child Labor'],
+    costs : [100, 500, 1000, 60000, 700000, 8000000, 33000, 200000, 5400000, 11740000000],
+    start : [false, false, false, false, false, false, false, false, false, false],
+    visible : [false, false, false, false, false, false, false, false, false, false]
 };
 
 const buildings = {
-    names : ['Onion Farmer', 'Onion Field', 'Onion Truck', 'Onion Store', 'Onion MLM', 'Onion Printer', 'Onion Republic'],
-    costs : [100, 1500, 17000, 200000, 3000000, 40000000, 500000000],
-    start : [0, 0, 0, 0, 0, 0, 0],
-    set : [false, false, false, false, false, false, false],
-    price : [onionFarmerPrice, onionFieldPrice, onionTruckPrice, onionStorePrice, onionMlmPrice, onionPrinterPrice, onionRepublicPrice],
-    count : [0, 0, 0, 0, 0, 0, 0]
+    names : ['Onion Farmer', 'Onion Field', 'Onion Truck', 'Onion Store', 'Onion MLM', 'Onion Printer', 'Onion Republic', 'Onion Biofuel Converter'],
+    costs : [100, 1500, 17000, 200000, 3000000, 40000000, 500000000, 6000000000],
+    start : [0, 0, 0, 0, 0, 0, 0, 0],
+    set : [false, false, false, false, false, false, false, false],
+    price : [onionFarmerPrice, onionFieldPrice, onionTruckPrice, onionStorePrice, onionMlmPrice, onionPrinterPrice, onionRepublicPrice, onionBiofuelConverterPrice],
+    count : [0, 0, 0, 0, 0, 0, 0, 0]
 };
 
 function effectsUpgrade() {
@@ -109,6 +117,24 @@ function effectsUpgrade() {
         seasonalContracts.style.display = "none";
         upgrades.start[6] = false;
     }
+    if (upgrades.start[7]) {
+        onionFarmerPower *= 2;
+        console.log('bought unpaid internships');
+        unpaidInternships.style.display = "none";
+        upgrades.start[7] = false;
+    }
+    if (upgrades.start[8]) {
+        onionFarmerPower *= 2;
+        console.log('bought cyborg farmers');
+        cyborgFarmers.style.display = "none";
+        upgrades.start[8] = false;
+    }
+    if (upgrades.start[9]) {
+        onionFarmerPower *= 2;
+        console.log('bought child labor');
+        childLabor.style.display = "none";
+        upgrades.start[9] = false;
+    }
 }
 
 function buyUpgrade(index) {
@@ -126,7 +152,7 @@ function buyUpgrade(index) {
 function buyBuilding(index) {
     if ((buildings.costs[index] <= onionFinalCalc) && (buildings.set[index] == false)){
         onionFinalCalc -= buildings.costs[index];
-        buildings.costs[index] = buildings.costs[index] * 1.15;
+        buildings.costs[index] = Math.round(buildings.costs[index] * 1.15);
         onionTotal.textContent = `${onionFinalCalc} onions clicked`;
         buildings.start[index] = buildings.start[index] + 1;
         buildings.count[index] = buildings.count[index] + 1;
@@ -135,7 +161,7 @@ function buyBuilding(index) {
         buildings.set[index] = true;
     } else if ((buildings.costs[index] <= onionFinalCalc) && (buildings.set)) {
         onionFinalCalc -= buildings.costs[index];
-        buildings.costs[index] = buildings.costs[index] * 1.15;
+        buildings.costs[index] = Math.round(buildings.costs[index] * 1.15);
         buildings.start[index] = buildings.start[index] + 1;
         buildings.count[index] = buildings.count[index] + 1;
         statsDisplay();
@@ -146,7 +172,7 @@ function buyBuilding(index) {
 
 function buyBuildingSet(index) {
     if (index == 0) {
-        setInterval(onionFarmerEffect, 100);
+        setInterval(onionFarmerEffect, 1000);
     }
     if (index == 1) {
         setInterval(onionFieldEffect, 100);
@@ -165,6 +191,9 @@ function buyBuildingSet(index) {
     }
     if (index == 6) {
         setInterval(onionRepublicEffect, 100);
+    }
+    if (index == 7) {
+        setInterval(onionBiofuelConverterEffect, 100);
     }
 }
 
@@ -189,6 +218,9 @@ function onionPrinterEffect() {
 function onionRepublicEffect() {
     onionFinalCalc = onionFinalCalc + onionRepublicPower * buildings.start[6];
 }
+function onionBiofuelConverterEffect() {
+    onionFinalCalc = onionFinalCalc + onionBiofuelConverterPower * buildings.start[7];
+}
 
 function statsDisplay() {
     buildingOpsFarmer.innerHTML = `${buildings.start[0]} onion farmers producing ${Math.round(onionFarmerPower * 10 * buildings.start[0])} onions per second`;
@@ -212,12 +244,17 @@ function statsDisplay() {
     buildingOpsRepublic.innerHTML = `${buildings.start[6]} onion republics producing ${Math.round(onionRepublicPower * 10 * buildings.start[6])} onions per second`;
     onionRepublicCount.innerHTML = `${buildings.count[6]}`;
     buildings.price[6].innerHTML = `${Math.round(buildings.costs[6])} &#129477;`;
+    buildingOpsBiofuelConverter.innerHTML = `${buildings.start[7]} onion biofuel converters producing ${Math.round(onionBiofuelConverterPower * 10 * buildings.start[7])} onions per second`;
+    onionBiofuelConverterCount.innerHTML = `${buildings.count[7]}`;
+    buildings.price[7].innerHTML = `${Math.round(buildings.costs[7])} &#129477;`;
     
-    if ((onionFinalCalc >= 1) && (upgrades.visible[0] == false)) {
+    onionsPerSecond.innerHTML = `${Math.round(onionFarmerPower * 10 * buildings.start[0] + onionFieldPower * 10 * buildings.start[1] + onionTruckPower * 10 * buildings.start[2] + onionStorePower * 10 * buildings.start[3] + onionMlmPower * 10 * buildings.start[4] + onionPrinterPower * 10 * buildings.start[5] + onionRepublicPower * 10 * buildings.start[6] + onionBiofuelConverterPower * 10 * buildings.start[7])} Onions Per Second`;
+    
+    if ((onionFinalCalc >= 0) && (upgrades.visible[0] == false)) {
         reinforcedMouse.style.display = "flex"; //add this to display update later
         upgrades.visible[0] = true;
     }
-    if ((onionFinalCalc >= 80) && (upgrades.visible[1] == false)) {
+    if ((onionFinalCalc >= 100) && (upgrades.visible[1] == false)) {
         doubleClick.style.display = "flex"; //add this to display update later
         upgrades.visible[1] = true;
     }
@@ -241,11 +278,71 @@ function statsDisplay() {
         seasonalContracts.style.display = "flex"; //add this to display update later
         upgrades.visible[6] = true;
     }
+    if ((buildings.count[0] >= 20) && (upgrades.visible[7] == false)) {
+        unpaidInternships.style.display = "flex"; //add this to display update later
+        upgrades.visible[7] = true;
+    }
+    if ((buildings.count[0] >= 30) && (upgrades.visible[8] == false)) {
+        cyborgFarmers.style.display = "flex"; //add this to display update later
+        upgrades.visible[8] = true;
+    }
+    if ((buildings.count[0] >= 50) && (upgrades.visible[9] == false)) {
+        childLabor.style.display = "flex"; //add this to display update later
+        upgrades.visible[9] = true;
+    }
+}
+
+function numberDisplayer(display) {
+    if (display.toString().length == 1) {
+        return display
+    }
+    if (display.toString().length == 2) {
+        return display
+    }
+    if (display.toString().length == 3) {
+        return display
+    }
+    if (display.toString().length == 4) {
+        return `${display.toLocaleString("en-US")}`
+    }
+    if (display.toString().length == 5) {
+        return `${display.toLocaleString("en-US")}`
+    }
+    if (display.toString().length == 6) {
+        return `${display.toLocaleString("en-US")}`
+    }
+    if (display.toString().length == 7) {
+        return `${parseFloat(Math.round(display) / 1000000).toFixed(3)} million`;
+    }
+    if (display.toString().length == 8) {
+        return `${Math.abs(parseFloat(display / 1000000).toFixed(3))} million`;
+    }
+    if (display.toString().length == 9) {
+        return `${Math.abs(parseFloat(display / 1000000).toFixed(3))} million`;
+    }
+    if (display.toString().length == 10) {
+        return `${Math.abs(parseFloat(display / 1000000000).toFixed(3))} billion`;
+    }
+    if (display.toString().length == 11) {
+        return `${Math.abs(parseFloat(display / 1000000000).toFixed(3))} billion`;
+    }
+    if (display.toString().length == 12) {
+        return `${Math.abs(parseFloat(display / 1000000000).toFixed(3))} billion`;
+    }
+    if (display.toString().length == 13) {
+        return `${Math.abs(parseFloat(display / 1000000000000).toFixed(3))} trillion`;
+    }
+    if (display.toString().length == 14) {
+        return `${Math.abs(parseFloat(display / 1000000000000).toFixed(3))} trillion`;
+    }
+    if (display.toString().length == 15) {
+        return `${Math.abs(parseFloat(display / 1000000000000).toFixed(3))} trillion`;
+    }
 }
 
 function onionClickCounter() {
     let onionClicksAll = onionClicksStart++;
-    clickCounter.textContent = `${onionClicksAll} onions clicked`;
+    clickCounter.textContent = `${numberDisplayer(onionClicksAll)} onions clicked`;
     statsDisplay();
 }
 
@@ -256,16 +353,36 @@ function onionFinal(onionAdd) {
 setInterval(function() {
     if (onionFinalCalc > onionFinalCalcDisplay) {
         onionFinalCalcDisplay = onionFinalCalc;
-        onionTotal.textContent = `${Math.round(onionFinalCalcDisplay)} onions`;
+        onionTotal.textContent = `${numberDisplayer(onionFinalCalcDisplay)} onions`;
     } else {
         onionFinalCalcDisplay = onionFinalCalc;
-        onionTotal.textContent = `${Math.round(onionFinalCalcDisplay)} onions`;
+        onionTotal.textContent = `${numberDisplayer(onionFinalCalcDisplay)} onions`;
     }
-}, 16);
+}, 100);
 
 onion.addEventListener('click', onionClickCounter);
 onion.addEventListener('click', function () { 
     onionFinal(onionClickPower); });
+reinforcedMouse.addEventListener('click', function () { 
+    buyUpgrade(0); });
+doubleClick.addEventListener('click', function () { 
+    buyUpgrade(1); });
+grippyGloves.addEventListener('click', function () { 
+    buyUpgrade(2); });
+saferPestisides.addEventListener('click', function () { 
+    buyUpgrade(3); });
+pitStops.addEventListener('click', function () { 
+    buyUpgrade(4); });
+farmersMarkets.addEventListener('click', function () { 
+    buyUpgrade(5); });
+seasonalContracts.addEventListener('click', function () { 
+    buyUpgrade(6); });
+unpaidInternships.addEventListener('click', function () { 
+    buyUpgrade(7); });
+cyborgFarmers.addEventListener('click', function () { 
+    buyUpgrade(8); });
+childLabor.addEventListener('click', function () { 
+    buyUpgrade(9); });
 onionFarmer.addEventListener('click', function () { 
     buyBuilding(0); });
 onionField.addEventListener('click', function () { 
@@ -280,3 +397,5 @@ onionPrinter.addEventListener('click', function () {
     buyBuilding(5); });
 onionRepublic.addEventListener('click', function () { 
     buyBuilding(6); });
+onionBiofuelConverter.addEventListener('click', function () { 
+    buyBuilding(7); });
