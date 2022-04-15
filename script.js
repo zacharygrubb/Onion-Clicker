@@ -1,3 +1,4 @@
+/*All DOM Elements selected*/
 const onion = document.querySelector('#onion');
 const onionTotal = document.querySelector('#onion-total');
 const onionsPerSecond = document.querySelector('#ops');
@@ -60,6 +61,7 @@ const onionBiofuelConverterPrice = document.querySelector('#onion-biofuel-conver
 const onionBiofuelConverterCount = document.querySelector('#onion-biofuel-converter-count');
 const buildingOpsBiofuelConverter = document.querySelector('#building-ops-biofuel-converter');
 
+/*Setting global variables*/
 let upgradeStart = 0;
 let onionAllTime = 0;
 let onionClicksStart = 1;
@@ -75,6 +77,7 @@ let onionPrinterPower = 5200;
 let onionRepublicPower = 36000;
 let onionBiofuelConverterPower = 350000;
 
+/*Objects for upgrades and buildings*/
 const upgrades = {
     names : ['Reinforced Mouse', 'Double Click', 'Grippy Gloves', 'Safer Pestisides', 'Pit Stops', 'Farmers Markets', 'Seasonal Contracts', 'Unpaid Internships', 'Cyborg Farmers', 'Child Labor', 'Gaslighting', 'Onion Bush', 'GMOs', 'Heat Generation', 'Vertical Farming', 'Constant Mutation', 'Cruise Control', 'Carpal Tunnel', 'Express Lanes', 'Bumper Stickers', 'Self Driving', '24 Hour Day'],
     costs : [100, 500, 1000, 60000, 700000, 8000000, 33000, 200000, 5400000, 11740000000, 19050000000000, 490000, 3000000, 16000000, 170000000000, 285000000000000, 5500000, 5000, 33000000, 920000000, 2000000000000, 65000000],
@@ -91,6 +94,7 @@ const buildings = {
     count : [0, 0, 0, 0, 0, 0, 0, 0]
 };
 
+/*Effects on buildings after buying upgrades*/
 function effectsUpgrade() {
     if (upgrades.start[0]) {
         onionClickPower *= 2;
@@ -248,6 +252,7 @@ function effectsUpgrade() {
     }
 }
 
+/*Functions to buy upgrades and buildings*/
 function buyUpgrade(index) {
     if (upgrades.costs[index] <= onionFinalCalc) {
         onionFinalCalc -= upgrades.costs[index];
@@ -281,6 +286,7 @@ function buyBuilding(index) {
     }
 }
 
+/*Setting the intervals for the building effect to trip every second*/
 function buyBuildingSet(index) {
     if (index == 0) {
         setInterval(onionFarmerEffect, 1000);
@@ -308,6 +314,7 @@ function buyBuildingSet(index) {
     }
 }
 
+/*The effects activated by the interval function*/
 function onionFarmerEffect() {
     onionFinalCalc = onionFinalCalc + onionFarmerPower * buildings.start[0];
     onionAllTime = onionAllTime + onionFarmerPower * buildings.start[0];
@@ -340,7 +347,8 @@ function onionBiofuelConverterEffect() {
     onionFinalCalc = onionFinalCalc + onionBiofuelConverterPower * buildings.start[7];
     onionAllTime = onionAllTime + onionBiofuelConverterPower * buildings.start[7];
 }
-    
+
+/*Function to update the display of most stats on the page*/
 function statsDisplay() {
     buildingOpsFarmer.innerHTML = `${buildings.start[0]} onion farmers producing ${numberDisplayer(onionFarmerPower * buildings.start[0])} onions per second`;
     onionFarmerCount.innerHTML = `${buildings.count[0]}`;
@@ -450,6 +458,7 @@ function statsDisplay() {
     }
 }
 
+/*Function that returns a simplified version of large numbers*/
 function numberDisplayer(display) {
     if (display.toString().length == 1) {
         return display
@@ -507,6 +516,7 @@ function numberDisplayer(display) {
     }
 }
 
+/*Function to count every click, and update upgrades dependent on total click count*/
 function onionClickCounter() {
     let onionClicksAll = onionClicksStart++;
     clickCounter.textContent = `${numberDisplayer(onionClicksAll)} onions clicked`;
@@ -524,12 +534,14 @@ function onionClickCounter() {
     }
 }
 
+/*Function to add clicks to your total*/
 function onionFinal(onionAdd) {
     onionFinalCalc = onionFinalCalc + onionAdd;
     onionAllTime = onionAllTime + onionAdd;
     statsDisplay();
 }
 
+/*Interval to constantly update total onion count*/
 setInterval(function() {
     if (onionFinalCalc > onionFinalCalcDisplay) {
         onionFinalCalcDisplay = onionFinalCalc;
@@ -540,6 +552,7 @@ setInterval(function() {
     }
 }, 100);
 
+/*All event handlers*/
 onion.addEventListener('click', onionClickCounter);
 onion.addEventListener('click', function () { 
     onionFinal(onionClickPower); });
