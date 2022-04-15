@@ -1,3 +1,4 @@
+/*Full body reset*/
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +6,7 @@
     font-family: Ubuntu;
 }
 
+/*Title in header*/
 #page-head {
     width: 100%;
     display: flex;
@@ -16,6 +18,7 @@
     box-sizing: border-box;
 }
 
+/*Body content*/
 #full-onion {
     display: flex;
     background-image:
@@ -28,6 +31,7 @@
     overflow: hidden;
 }
 
+/*Middle potion with the onion*/
 #onion-stats {
     text-align: center;
 }
@@ -46,6 +50,7 @@
     transition: all .1s;
 }
 
+/*Making the onion bounce when clicked*/
 #onion:hover {
     cursor: pointer;
     transform: scale(1.02);
@@ -78,12 +83,14 @@
     column-gap: 20px;
 }
 
+/*Upgrade and Building Titles*/
 #upgrades-tag, #buildings-tag {
     text-align: center;
     padding-top: 10px;
     font-size: 36px;
 }
 
+/*Upgrades and Buildings containers*/
 #upgrades, #buildings {
     list-style: none;
     width: 100%;
@@ -101,6 +108,7 @@
     border-left: solid black 4px;
 }
 
+/*Individual upgrades*/
 .upgrades-item {
     display: none;
     flex-direction: row;
@@ -111,6 +119,7 @@
     height: 100px;
 }
 
+/*Individual buildings*/
 .buildings-item {
     display: flex;
     flex-direction: row;
@@ -153,6 +162,7 @@
     font-size: 50px;
 }
 
+/*Content about the buildings and upgrades hidden unless hovered on*/
 .buildings-item .building-ops, .upgrades-item .upgrades-description {
     visibility: hidden;
     background-color: #3B071D;
@@ -173,6 +183,7 @@
     visibility: visible;
 }
 
+/*Media queries*/
 @media screen and (max-width: 1150px) {
     #full-onion {
         display: grid;
