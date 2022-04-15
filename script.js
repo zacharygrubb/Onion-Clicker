@@ -23,6 +23,10 @@ const verticalFarming = document.querySelector('#upgrades-verticalfarming');
 const constantMutation = document.querySelector('#upgrades-constantmutation');
 const cruiseControl = document.querySelector('#upgrades-cruisecontrol');
 const carpalTunnel = document.querySelector('#upgrades-carpaltunnel');
+const expressLanes = document.querySelector('#upgrades-expresslanes');
+const bumperStickers = document.querySelector('#upgrades-bumperstickers');
+const selfDriving = document.querySelector('#upgrades-selfdriving');
+const hour24Day = document.querySelector('#upgrades-24hourday');
 const onionFarmer = document.querySelector('#buildings-onion-farmer');
 const onionFarmerPrice = document.querySelector('#onion-farmer-price');
 const onionFarmerCount = document.querySelector('#onion-farmer-count');
@@ -59,7 +63,7 @@ const buildingOpsBiofuelConverter = document.querySelector('#building-ops-biofue
 let upgradeStart = 0;
 let onionAllTime = 0;
 let onionClicksStart = 1;
-let onionClickPower = 1234567;
+let onionClickPower = 1234284873;
 let onionFinalCalc = 0;
 let onionFinalCalcDisplay = 0;
 let onionFarmerPower = 1;
@@ -72,10 +76,10 @@ let onionRepublicPower = 36000;
 let onionBiofuelConverterPower = 350000;
 
 const upgrades = {
-    names : ['Reinforced Mouse', 'Double Click', 'Grippy Gloves', 'Safer Pestisides', 'Pit Stops', 'Farmers Markets', 'Seasonal Contracts', 'Unpaid Internships', 'Cyborg Farmers', 'Child Labor', 'Gaslighting', 'Onion Bush', 'GMOs', 'Heat Generation', 'Vertical Farming', 'Constant Mutation', 'Cruise Control', 'Carpal Tunnel'],
-    costs : [100, 500, 1000, 60000, 700000, 8000000, 33000, 200000, 5400000, 11740000000, 19050000000000, 490000, 3000000, 16000000, 170000000000, 285000000000000, 5500000, 5000],
-    start : [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    visible : [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+    names : ['Reinforced Mouse', 'Double Click', 'Grippy Gloves', 'Safer Pestisides', 'Pit Stops', 'Farmers Markets', 'Seasonal Contracts', 'Unpaid Internships', 'Cyborg Farmers', 'Child Labor', 'Gaslighting', 'Onion Bush', 'GMOs', 'Heat Generation', 'Vertical Farming', 'Constant Mutation', 'Cruise Control', 'Carpal Tunnel', 'Express Lanes', 'Bumper Stickers', 'Self Driving', '24 Hour Day'],
+    costs : [100, 500, 1000, 60000, 700000, 8000000, 33000, 200000, 5400000, 11740000000, 19050000000000, 490000, 3000000, 16000000, 170000000000, 285000000000000, 5500000, 5000, 33000000, 920000000, 2000000000000, 65000000],
+    start : [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    visible : [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 };
 
 const buildings = {
@@ -212,6 +216,34 @@ function effectsUpgrade() {
         console.log('bought carpal tunnel');
         carpalTunnel.style.display = "none";
         upgrades.start[17] = false;
+        upgradeStart += 1;
+    }
+    if (upgrades.start[18]) {
+        onionTruckPower *= 2;
+        console.log('bought express lanes');
+        expressLanes.style.display = "none";
+        upgrades.start[18] = false;
+        upgradeStart += 1;
+    }
+    if (upgrades.start[19]) {
+        onionTruckPower *= 2;
+        console.log('bought bumper stickers');
+        bumperStickers.style.display = "none";
+        upgrades.start[19] = false;
+        upgradeStart += 1;
+    }
+    if (upgrades.start[20]) {
+        onionTruckPower *= 2;
+        console.log('bought self driving');
+        selfDriving.style.display = "none";
+        upgrades.start[20] = false;
+        upgradeStart += 1;
+    }
+    if (upgrades.start[21]) {
+        onionStorePower *= 2;
+        console.log('bought 24 hour days');
+        hour24Day.style.display = "none";
+        upgrades.start[21] = false;
         upgradeStart += 1;
     }
 }
@@ -400,6 +432,22 @@ function statsDisplay() {
         cruiseControl.style.display = "flex";
         upgrades.visible[16] = true;
     }
+    if ((buildings.count[2] >= 20) && (upgrades.visible[18] == false)) {
+        expressLanes.style.display = "flex";
+        upgrades.visible[18] = true;
+    }
+    if ((buildings.count[2] >= 30) && (upgrades.visible[19] == false)) {
+        bumperStickers.style.display = "flex";
+        upgrades.visible[19] = true;
+    }
+    if ((buildings.count[2] >= 50) && (upgrades.visible[20] == false)) {
+        selfDriving.style.display = "flex";
+        upgrades.visible[20] = true;
+    }
+    if ((buildings.count[3] >= 10) && (upgrades.visible[21] == false)) {
+        hour24Day.style.display = "flex";
+        upgrades.visible[21] = true;
+    }
 }
 
 function numberDisplayer(display) {
@@ -531,6 +579,14 @@ cruiseControl.addEventListener('click', function () {
     buyUpgrade(16); });
 carpalTunnel.addEventListener('click', function () { 
     buyUpgrade(17); });
+expressLanes.addEventListener('click', function () { 
+    buyUpgrade(18); });
+bumperStickers.addEventListener('click', function () { 
+    buyUpgrade(19); });
+selfDriving.addEventListener('click', function () { 
+    buyUpgrade(20); });
+hour24Day.addEventListener('click', function () { 
+    buyUpgrade(21); });
 onionFarmer.addEventListener('click', function () { 
     buyBuilding(0); });
 onionField.addEventListener('click', function () { 

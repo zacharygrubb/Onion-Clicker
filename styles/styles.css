@@ -43,10 +43,16 @@
     height: 500px;
     border-bottom-left-radius: 44%;
     border-top-right-radius: 72%;
+    transition: all .1s;
 }
 
 #onion:hover {
     cursor: pointer;
+    transform: scale(1.02);
+}
+
+#onion:active {
+    transform: scale(0.98);
 }
 
 #ops {
@@ -83,6 +89,7 @@
     width: 100%;
     background-color: #E1D5E6;
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 100%;
 }
 
@@ -133,7 +140,7 @@
 }
 
 .buildings-item-text, .upgrades-item-text {
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .buildings-item-image {
@@ -164,4 +171,106 @@
 
 .buildings-item:hover .building-ops, .upgrades-item:hover .upgrades-description {
     visibility: visible;
+}
+
+@media screen and (max-width: 1150px) {
+    #full-onion {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 710px 100%;
+        grid-template-areas: 
+            "stats stats"
+            "upgrades buildings";
+        height: 100%;
+    }
+    #upgrades, #buildings {
+        overflow: hidden;
+        border-top: solid black 4px;
+    }
+    #onion-stats {
+        grid-area: stats;
+        background-image:
+        linear-gradient(to bottom, rgba(254,252,247, 0)70%,rgba(254,252,247, 1)),
+        url(../assets/onion-background.jpg);
+        background-size: cover;
+        background-position: top;
+    }   
+    #buildings {
+        grid-area: buildings;
+    }
+    #upgrades {
+        grid-area: upgrades;
+    }
+}
+
+@media screen and (max-width: 645px) {
+    #full-onion {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 710px 788px 1fr;
+        grid-template-areas: 
+            "stats"
+            "buildings"
+            "upgrades";
+    }
+    #buildings {
+        border-left: none;
+    }
+    .upgrades-item {
+        height: 90px;
+    }
+    .upgrades-icon{
+        font-size: 68px;
+    }
+    .buildings-item {
+        height: 90px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    #full-onion {
+        grid-auto-rows: 620px 788px 1fr;
+    }
+    #onion {
+        height: 400px
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #full-onion {
+        grid-auto-rows: 520px 788px 1fr;
+    }
+    #onion {
+        height: 300px
+    }
+    #onion-total{
+        font-size: 30px;
+    }
+    .buildings-item-text, .upgrades-item-text {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #full-onion {
+        grid-auto-rows: 450px 788px 1fr;
+    }
+    #onion {
+        height: 200px
+    }
+    #ops {
+        font-size: 24px;
+        padding: 10px;
+    }
+    #stats-display {
+        flex-direction: column;
+    }
+    .building-count {
+        font-size: 28px;
+    }
+    .item-text {
+        font-size: 12px;
+    }
+    .buildings-item-text, .upgrades-item-text {
+        font-size: 16px;
+    }
 }
