@@ -98,161 +98,139 @@ const buildings = {
 function effectsUpgrade() {
     if (upgrades.start[0]) {
         onionClickPower *= 2;
-        console.log('bought reinforced mouse');
         reinforcedMouse.style.display = "none";
         upgrades.start[0] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[1]) {
         onionClickPower *= 2;
-        console.log('bought double click');
         doubleClick.style.display = "none";
         upgrades.start[1] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[2]) {
         onionFarmerPower *= 2;
-        console.log('bought grippy gloves');
         grippyGloves.style.display = "none";
         upgrades.start[2] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[3]) {
         onionFieldPower *= 2;
-        console.log('bought safer pestisides');
         saferPestisides.style.display = "none";
         upgrades.start[3] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[4]) {
         onionTruckPower *= 2;
-        console.log('bought pit stops');
         pitStops.style.display = "none";
         upgrades.start[4] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[5]) {
         onionStorePower *= 2;
-        console.log('bought farmers markets');
         farmersMarkets.style.display = "none";
         upgrades.start[5] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[6]) {
         onionFarmerPower *= 2;
-        console.log('bought seasonal contracts');
         seasonalContracts.style.display = "none";
         upgrades.start[6] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[7]) {
         onionFarmerPower *= 2;
-        console.log('bought unpaid internships');
         unpaidInternships.style.display = "none";
         upgrades.start[7] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[8]) {
         onionFarmerPower *= 2;
-        console.log('bought cyborg farmers');
         cyborgFarmers.style.display = "none";
         upgrades.start[8] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[9]) {
         onionFarmerPower *= 2;
-        console.log('bought child labor');
         childLabor.style.display = "none";
         upgrades.start[9] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[10]) {
         onionFarmerPower *= 2;
-        console.log('bought gaslighting');
         gasLighting.style.display = "none";
         upgrades.start[10] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[11]) {
         onionFieldPower *= 2;
-        console.log('bought onion bush');
         onionBush.style.display = "none";
         upgrades.start[11] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[12]) {
         onionFieldPower *= 2;
-        console.log('bought gmos');
         gmos.style.display = "none";
         upgrades.start[12] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[13]) {
         onionFieldPower *= 2;
-        console.log('bought heat generation');
         heatGeneration.style.display = "none";
         upgrades.start[13] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[14]) {
         onionFieldPower *= 2;
-        console.log('bought vertical farming');
         verticalFarming.style.display = "none";
         upgrades.start[14] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[15]) {
         onionFieldPower *= 2;
-        console.log('bought constant mutation');
         constantMutation.style.display = "none";
         upgrades.start[15] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[16]) {
         onionTruckPower *= 2;
-        console.log('bought cruise control');
         cruiseControl.style.display = "none";
         upgrades.start[16] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[17]) {
         onionClickPower *= 2;
-        console.log('bought carpal tunnel');
         carpalTunnel.style.display = "none";
         upgrades.start[17] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[18]) {
         onionTruckPower *= 2;
-        console.log('bought express lanes');
         expressLanes.style.display = "none";
         upgrades.start[18] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[19]) {
         onionTruckPower *= 2;
-        console.log('bought bumper stickers');
         bumperStickers.style.display = "none";
         upgrades.start[19] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[20]) {
         onionTruckPower *= 2;
-        console.log('bought self driving');
         selfDriving.style.display = "none";
         upgrades.start[20] = false;
         upgradeStart += 1;
     }
     if (upgrades.start[21]) {
         onionStorePower *= 2;
-        console.log('bought 24 hour days');
         hour24Day.style.display = "none";
         upgrades.start[21] = false;
         upgradeStart += 1;
     }
 }
 
-/*Functions to buy upgrades and buildings*/
+/*Function to buy upgrades*/
 function buyUpgrade(index) {
     if (upgrades.costs[index] <= onionFinalCalc) {
         onionFinalCalc -= upgrades.costs[index];
@@ -261,10 +239,11 @@ function buyUpgrade(index) {
         effectsUpgrade();
         statsDisplay();
     } else {
-        alert('get your money up')
+        alert('insufficient funds')
     }
 }
 
+/*Function to buy buildings*/
 function buyBuilding(index) {
     if ((buildings.costs[index] <= onionFinalCalc) && (buildings.set[index] == false)){
         onionFinalCalc -= buildings.costs[index];
@@ -282,7 +261,7 @@ function buyBuilding(index) {
         buildings.count[index] = buildings.count[index] + 1;
         statsDisplay();
     } else {
-        alert('get your money up');
+        alert('insufficient funds');
     }
 }
 
@@ -534,7 +513,7 @@ function onionClickCounter() {
     }
 }
 
-/*Function to add clicks to your total*/
+/*Function to add clciks to your total*/
 function onionFinal(onionAdd) {
     onionFinalCalc = onionFinalCalc + onionAdd;
     onionAllTime = onionAllTime + onionAdd;
